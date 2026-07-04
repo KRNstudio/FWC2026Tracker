@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missing Cards JG - Panini FWC 2026</title>
+    <title>Sticker Collection Tracker - Panini FWC 2026</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,21 +40,25 @@
             color: #555;
             font-weight: normal;
         }
-        .logo {
-            font-size: 50px; 
+        
+        .header-logo {
+            height: 80px; 
+            width: auto;
+            object-fit: contain;
         }
-        .fwc-section {
+        
+        .special-section {
             background: #eef2f5;
             padding: 10px 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             font-weight: bold;
             gap: 15px;
         }
-        .fwc-section input[type="text"] {
-            width: 150px;
+        .special-section input[type="text"] {
+            width: 300px;
         }
         .grid {
             display: grid;
@@ -114,583 +118,481 @@
             height: 18px;
             cursor: pointer;
         }
-        /* Gray out text when checked */
-        .team-row.completed input[type="text"]:not(#total-count) {
+        
+        .team-row.completed input[type="text"]:not(#total-count),
+        .special-section.completed input[type="text"]:not(#total-count) {
             text-decoration: line-through;
             color: #aaa;
         }
 
-        /* Group Colors */
-        .bg-a { background-color: #689f38; }
-        .bg-b { background-color: #e53935; }
-        .bg-c { background-color: #fbc02d; }
-        .bg-d { background-color: #1e88e5; }
-        .bg-e { background-color: #8d6e63; }
-        .bg-f { background-color: #00acc1; }
-        .bg-g { background-color: #8e24aa; }
-        .bg-h { background-color: #43a047; }
-        .bg-i { background-color: #039be5; }
-        .bg-j { background-color: #d32f2f; }
-        .bg-k { background-color: #7b1fa2; }
-        .bg-l { background-color: #a1887f; }
+        /* Group Colors exact mirrored from IMG_7305.jpg */
+        .bg-a { background-color: #4E9B5D; } /* Grass Green */
+        .bg-b { background-color: #CE3235; } /* Vibrant Red */
+        .bg-c { background-color: #CCCE45; } /* Soft Gold/Yellow */
+        .bg-d { background-color: #24458C; } /* Royal Blue */
+        .bg-e { background-color: #D45A38; } /* Coral Orange */
+        .bg-f { background-color: #1A5C54; } /* Deep Teal */
+        .bg-g { background-color: #96A1CE; } /* Lavender/Periwinkle */
+        .bg-h { background-color: #539D90; } /* Sage Green */
+        .bg-i { background-color: #252C75; } /* Midnight Indigo */
+        .bg-j { background-color: #DCA6A2; } /* Dusty Rose/Pink */
+        .bg-k { background-color: #CC3E6C; } /* Magenta */
+        .bg-l { background-color: #47181D; } /* Burgundy/Maroon */
 
+        /* Centered single-row footer adjustment */
         .footer {
             margin-top: 30px;
-            text-align: right;
-            font-size: 20px;
-            font-weight: bold;
             background: #fff3cd;
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #ffeeba;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+            font-size: 16px;
+            font-weight: bold;
         }
         
         #total-count {
-            width: 60px;
-            font-size: 20px;
+            width: 55px;
+            font-size: 16px;
             font-weight: bold;
             color: #333;
             text-align: center;
             border: 1px dashed #ccc;
             background: transparent;
-            margin-left: 10px;
-            padding: 2px;
-        }
-        #total-count:focus {
-            border: 1px solid #000;
+            padding: 4px;
+            flex-grow: 0;
         }
 
-/* DARK MODE */
-body.dark {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
+        body.view-acquired input[type="text"] {
+            border-bottom: 1px dashed #4caf50;
+        }
+        body.view-acquired .team-row.completed input[type="text"] {
+            text-decoration: none;
+            color: #2e7d32;
+            font-weight: 500;
+        }
 
-body.dark .container {
-    background: #2a2a2a;
-    box-shadow: none;
-}
-
-body.dark .team-row {
-    background: #333;
-    border-bottom: 1px solid #444;
-}
-
-body.dark input[type="text"] {
-    color: #fff;
-    border-bottom: 1px dashed #777;
-}
-
-body.dark .group-title {
-    text-shadow: none;
-}
-
-body.dark .footer {
-    background: #444;
-    border-color: #666;
-    color: #fff;
-}
+        /* Dark Mode Styling Rules */
+        body.dark {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        body.dark .container {
+            background: #2a2a2a;
+            box-shadow: none;
+        }
+        body.dark .header {
+            border-bottom-color: #444;
+        }
+        body.dark .header h1 {
+            color: #ffffff;
+        }
+        body.dark .header h2 {
+            color: #cccccc;
+        }
+        body.dark .special-section {
+            background: #3a3a3a;
+            color: #ffffff;
+        }
+        body.dark .team-row {
+            background: #333;
+            border-bottom: 1px solid #444;
+        }
+        body.dark input[type="text"] {
+            color: #fff;
+            border-bottom: 1px dashed #777;
+        }
+        body.dark #total-count {
+            color: #ffffff !important;
+            border-color: #666;
+        }
+        body.dark .group-title {
+            text-shadow: none;
+        }
+        body.dark .footer {
+            background: #444;
+            border-color: #666;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <div class="logo">🏆</div>
+        <img src="Pasted Graphic 5.png" alt="Panini FWC 2026 Logo" class="header-logo">
         <div>
-            <h1>MISSING CARDS JG</h1>
-            <h2>PANINI FWC 2026 STICKER NEED LIST</h2>
+            <h1 id="main-title">MISSING CARDS TRACKER</h1>
+            <h2 id="sub-title">PANINI FWC 2026 STICKER NEED LIST</h2>
         </div>
-        <div class="logo">🏆</div>
+        <img src="Pasted Graphic 5.png" alt="Panini FWC 2026 Logo" class="header-logo">
     </div>
 
-<button id="dark-toggle" 
-        style="padding:10px 15px; font-size:16px; margin-bottom:20px; cursor:pointer;">
-    Toggle Dark Mode
-</button>
+    <!-- Special Feature Sections -->
+    <div class="special-section" data-section-id="FWC" data-max="19">
+        <span class="section-label">FWC (FIFA World Cup) Missing:</span>
+        <input type="text" class="sticker-input">
+        <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
+    </div>
 
-    <!-- FWC Section -->
-    <div class="fwc-section">
-        <span>FWC (FIFA World Cup) Missing:</span>
-        <input type="text" value="2, 13, 16" class="sticker-input">
-        <input type="checkbox" class="status-cb">
+    <div class="special-section" data-section-id="COCA_COLA" data-max="14">
+        <span class="section-label">Coca Cola Stickers Missing:</span>
+        <input type="text" class="sticker-input">
+        <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
     </div>
 
     <div class="grid">
         <!-- GROUP A -->
         <div class="group">
             <div class="group-title bg-a collapsible">Group A</div>
-            <div class="team-row completed">
-                <span class="flag">🇲🇽</span><span class="country">MEX</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇿🇦</span><span class="country">RSA</span>
-                <input type="text" value="2, 16, 17" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇰🇷</span><span class="country">KOR</span>
-                <input type="text" value="1, 5, 15, 16, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇨🇿</span><span class="country">CZE</span>
-                <input type="text" value="3, 16, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="MEX"><span class="flag">🇲🇽</span><span class="country">MEX</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="RSA"><span class="flag">🇿🇦</span><span class="country">RSA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="KOR"><span class="flag">🇰🇷</span><span class="country">KOR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="CZE"><span class="flag">🇨🇿</span><span class="country">CZE</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP B -->
         <div class="group">
             <div class="group-title bg-b collapsible">Group B</div>
-            <div class="team-row">
-                <span class="flag">🇨🇦</span><span class="country">CAN</span>
-                <input type="text" value="20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇧🇦</span><span class="country">BIH</span>
-                <input type="text" value="8, 11, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇶🇦</span><span class="country">QAT</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇨🇭</span><span class="country">SUI</span>
-                <input type="text" value="3, 9, 13, 15" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="CAN"><span class="flag">🇨🇦</span><span class="country">CAN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="BIH"><span class="flag">🇧🇦</span><span class="country">BIH</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="QAT"><span class="flag">🇶🇦</span><span class="country">QAT</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="SUI"><span class="flag">🇨🇭</span><span class="country">SUI</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP C -->
         <div class="group">
             <div class="group-title bg-c collapsible">Group C</div>
-            <div class="team-row">
-                <span class="flag">🇧🇷</span><span class="country">BRA</span>
-                <input type="text" value="5, 10" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇲🇦</span><span class="country">MAR</span>
-                <input type="text" value="6, 10, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇭🇹</span><span class="country">HAI</span>
-                <input type="text" value="16" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="country">SCO</span>
-                <input type="text" value="5, 8, 11, 17" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="BRA"><span class="flag">🇧🇷</span><span class="country">BRA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="MAR"><span class="flag">🇲🇦</span><span class="country">MAR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="HAI"><span class="flag">🇭🇹</span><span class="country">HAI</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="SCO"><span class="flag">🏴</span><span class="country">SCO</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP D -->
         <div class="group">
             <div class="group-title bg-d collapsible">Group D</div>
-            <div class="team-row">
-                <span class="flag">🇺🇸</span><span class="country">USA</span>
-                <input type="text" value="18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇵🇾</span><span class="country">PAR</span>
-                <input type="text" value="1, 13" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇦🇺</span><span class="country">AUS</span>
-                <input type="text" value="5, 8, 19, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇹🇷</span><span class="country">TUR</span>
-                <input type="text" value="16, 17, 19" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="USA"><span class="flag">🇺🇸</span><span class="country">USA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="PAR"><span class="flag">🇵🇾</span><span class="country">PAR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="AUS"><span class="flag">🇦🇺</span><span class="country">AUS</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="TUR"><span class="flag">🇹🇷</span><span class="country">TUR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP E -->
         <div class="group">
             <div class="group-title bg-e collapsible">Group E</div>
-            <div class="team-row">
-                <span class="flag">🇩🇪</span><span class="country">GER</span>
-                <input type="text" value="9, 14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇨🇼</span><span class="country">CUW</span>
-                <input type="text" value="12" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇨🇮</span><span class="country">CIV</span>
-                <input type="text" value="5, 14, 19" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇪🇨</span><span class="country">ECU</span>
-                <input type="text" value="1, 17, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="GER"><span class="flag">🇩🇪</span><span class="country">GER</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="CUW"><span class="flag">🇨🇼</span><span class="country">CUW</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="CIV"><span class="flag">🇨🇮</span><span class="country">CIV</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="ECU"><span class="flag">🇪🇨</span><span class="country">ECU</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP F -->
         <div class="group">
             <div class="group-title bg-f collapsible">Group F</div>
-            <div class="team-row">
-                <span class="flag">🇳🇱</span><span class="country">NED</span>
-                <input type="text" value="4, 8, 13" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇯🇵</span><span class="country">JPN</span>
-                <input type="text" value="4, 6, 9, 15, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇸🇪</span><span class="country">SWE</span>
-                <input type="text" value="5" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇹🇳</span><span class="country">TUN</span>
-                <input type="text" value="15" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="NED"><span class="flag">🇳🇱</span><span class="country">NED</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="JPN"><span class="flag">🇯🇵</span><span class="country">JPN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="SWE"><span class="flag">🇸🇪</span><span class="country">SWE</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="TUN"><span class="flag">🇹🇳</span><span class="country">TUN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP G -->
         <div class="group">
             <div class="group-title bg-g collapsible">Group G</div>
-            <div class="team-row completed">
-                <span class="flag">🇧🇪</span><span class="country">BEL</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇪🇬</span><span class="country">EGY</span>
-                <input type="text" value="2, 5, 9, 19" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇮🇷</span><span class="country">IRN</span>
-                <input type="text" value="4, 13" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇳🇿</span><span class="country">NZL</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
+            <div class="team-row" data-team-id="BEL"><span class="flag">🇧🇪</span><span class="country">BEL</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="EGY"><span class="flag">🇪🇬</span><span class="country">EGY</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="IRN"><span class="flag">🇮🇷</span><span class="country">IRN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="NZL"><span class="flag">🇳🇿</span><span class="country">NZL</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP H -->
         <div class="group">
             <div class="group-title bg-h collapsible">Group H</div>
-            <div class="team-row">
-                <span class="flag">🇪🇸</span><span class="country">ESP</span>
-                <input type="text" value="6, 10, 11, 14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇨🇻</span><span class="country">CPV</span>
-                <input type="text" value="12, 16, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇸🇦</span><span class="country">KSA</span>
-                <input type="text" value="6, 14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇺🇾</span><span class="country">URU</span>
-                <input type="text" value="14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="ESP"><span class="flag">🇪🇸</span><span class="country">ESP</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="CPV"><span class="flag">🇨🇻</span><span class="country">CPV</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="KSA"><span class="flag">🇸🇦</span><span class="country">KSA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="URU"><span class="flag">🇺🇾</span><span class="country">URU</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP I -->
         <div class="group">
             <div class="group-title bg-i collapsible">Group I</div>
-            <div class="team-row">
-                <span class="flag">🇫🇷</span><span class="country">FRA</span>
-                <input type="text" value="2, 4, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇸🇳</span><span class="country">SEN</span>
-                <input type="text" value="9, 13, 14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇮🇶</span><span class="country">IRQ</span>
-                <input type="text" value="2, 4, 12, 17, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇳🇴</span><span class="country">NOR</span>
-                <input type="text" value="4, 6, 9, 18, 19" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="FRA"><span class="flag">🇫🇷</span><span class="country">FRA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="SEN"><span class="flag">🇸🇳</span><span class="country">SEN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="IRQ"><span class="flag">🇮🇶</span><span class="country">IRQ</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="NOR"><span class="flag">🇳🇴</span><span class="country">NOR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP J -->
         <div class="group">
            <div class="group-title bg-j collapsible">Group J</div>
-            <div class="team-row">
-                <span class="flag">🇦🇷</span><span class="country">ARG</span>
-                <input type="text" value="1, 4, 8, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇩🇿</span><span class="country">ALG</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇦🇹</span><span class="country">AUT</span>
-                <input type="text" value="1, 12" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇯🇴</span><span class="country">JOR</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
+            <div class="team-row" data-team-id="ARG"><span class="flag">🇦🇷</span><span class="country">ARG</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="ALG"><span class="flag">🇩🇿</span><span class="country">ALG</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="AUT"><span class="flag">🇦🇹</span><span class="country">AUT</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="JOR"><span class="flag">🇯🇴</span><span class="country">JOR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP K -->
         <div class="group">
             <div class="group-title bg-k collapsible">Group K</div>
-            <div class="team-row">
-                <span class="flag">🇵🇹</span><span class="country">POR</span>
-                <input type="text" value="2, 7, 17" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇨🇩</span><span class="country">COD</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇺🇿</span><span class="country">UZB</span>
-                <input type="text" value="10" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row completed">
-                <span class="flag">🇨🇴</span><span class="country">COL</span>
-                <input type="text" value="" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb" checked></div>
-            </div>
+            <div class="team-row" data-team-id="POR"><span class="flag">🇵🇹</span><span class="country">POR</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="COD"><span class="flag">🇨🇩</span><span class="country">COD</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="UZB"><span class="flag">🇺🇿</span><span class="country">UZB</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="COL"><span class="flag">🇨🇴</span><span class="country">COL</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
 
         <!-- GROUP L -->
         <div class="group">
             <div class="group-title bg-l collapsible">Group L</div>
-            <div class="team-row">
-                <span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="country">ENG</span>
-                <input type="text" value="6, 14, 19, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇭🇷</span><span class="country">CRO</span>
-                <input type="text" value="1, 3, 12, 13, 20" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇬🇭</span><span class="country">GHA</span>
-                <input type="text" value="14" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
-            <div class="team-row">
-                <span class="flag">🇵🇦</span><span class="country">PAN</span>
-                <input type="text" value="14, 18" class="sticker-input">
-                <div class="checkbox-container"><input type="checkbox" class="status-cb"></div>
-            </div>
+            <div class="team-row" data-team-id="ENG"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="country">ENG</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="CRO"><span class="flag">🇭🇷</span><span class="country">CRO</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="GHA"><span class="flag">🇬🇭</span><span class="country">GHA</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
+            <div class="team-row" data-team-id="PAN"><span class="flag">🇵🇦</span><span class="country">PAN</span><input type="text" class="sticker-input"><div class="checkbox-container"><input type="checkbox" class="status-cb"></div></div>
         </div>
     </div>
 
-    <!-- Editable Footer -->
+    <!-- Combined Footer Controls -->
     <div class="footer">
-        TOTAL STICKERS NEEDED: 
-        <input type="text" id="total-count" value="112">
+        <span id="total-label">TOTAL STICKERS NEEDED:</span> 
+        <input type="text" id="total-count" readonly>
     </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    let activeView = localStorage.getItem("tracker_active_view") || "missing";
 
-    /* -----------------------------------------
-       SAVE + RESTORE TEXT INPUTS
-    ------------------------------------------*/
-    const textInputs = document.querySelectorAll(".sticker-input");
-    textInputs.forEach((input, index) => {
-        const key = "sticker_input_" + index;
+    const mainTitle = document.getElementById("main-title");
+    const subTitle = document.getElementById("sub-title");
+    const totalLabel = document.getElementById("total-label");
+    const totalCountInput = document.getElementById("total-count");
+    const rows = document.querySelectorAll(".team-row, .special-section");
+
+    function getFullSeries(max) {
+        return Array.from({length: max}, (_, i) => i + 1);
+    }
+
+    function loadMissingState(identifier, maxLimit) {
+        const key = "missing_data_" + identifier;
         const saved = localStorage.getItem(key);
-        if (saved !== null) input.value = saved;
+        if (saved !== null) {
+            return saved.split(",").map(n => n.trim()).filter(n => n !== "").map(Number);
+        }
+        return getFullSeries(maxLimit);
+    }
 
-        input.addEventListener("input", () => {
-            localStorage.setItem(key, input.value);
-            updateTotalCount();
-        });
-    });
+    function saveMissingState(identifier, missingArray) {
+        localStorage.setItem("missing_data_" + identifier, missingArray.join(", "));
+    }
 
-    /* -----------------------------------------
-       SAVE + RESTORE CHECKBOXES
-    ------------------------------------------*/
-    const checkboxes = document.querySelectorAll(".status-cb");
-    checkboxes.forEach((cb, index) => {
-        const key = "status_cb_" + index;
-        const saved = localStorage.getItem(key);
+    function getIdentifier(element) {
+        return element.getAttribute("data-team-id") || element.getAttribute("data-section-id");
+    }
 
-        if (saved === "true") {
-            cb.checked = true;
-            const row = cb.closest(".team-row");
-            if (row) row.classList.add("completed");
+    function getMaxLimit(element) {
+        if (element.hasAttribute("data-max")) {
+            return parseInt(element.getAttribute("data-max"), 10);
+        }
+        return 20;
+    }
+
+    function getLabelText(element, view, originalLabel) {
+        if (element.classList.contains("special-section")) {
+            return view === "missing" ? originalLabel : originalLabel.replace("Missing:", "Acquired:");
+        }
+        return originalLabel;
+    }
+
+    function renderView() {
+        document.body.classList.remove("view-missing", "view-acquired");
+        if (activeView === "missing") {
+            document.body.classList.add("view-missing");
+            mainTitle.textContent = "MISSING CARDS TRACKER";
+            subTitle.textContent = "PANINI FWC 2026 STICKER NEED LIST";
+            totalLabel.textContent = "TOTAL STICKERS NEEDED:";
+            navBtn.textContent = "ACQUIRED TRACKER";
+        } else {
+            document.body.classList.add("view-acquired");
+            mainTitle.textContent = "COMPLETED CARDS TRACKER";
+            subTitle.textContent = "PANINI FWC 2026 STICKER LIST";
+            totalLabel.textContent = "TOTAL STICKERS ACQUIRED:";
+            navBtn.textContent = "MISSING TRACKER";
         }
 
-        cb.addEventListener("change", () => {
-            localStorage.setItem(key, cb.checked);
+        let overallTotalCounter = 0;
 
-            const row = cb.closest(".team-row");
-            if (row) {
-                if (cb.checked) row.classList.add("completed");
+        rows.forEach(row => {
+            const id = getIdentifier(row);
+            const max = getMaxLimit(row);
+            const missingList = loadMissingState(id, max);
+
+            const fullList = getFullSeries(max);
+            const acquiredList = fullList.filter(num => !missingList.includes(num));
+
+            const labelSpan = row.querySelector(".section-label");
+            if (labelSpan) {
+                if (!labelSpan.hasAttribute("data-orig")) {
+                    labelSpan.setAttribute("data-orig", labelSpan.textContent);
+                }
+                labelSpan.textContent = getLabelText(row, activeView, labelSpan.getAttribute("data-orig"));
+            }
+
+            const cb = row.querySelector(".status-cb");
+            const input = row.querySelector(".sticker-input");
+
+            const cleanInput = input.cloneNode(true);
+            input.parentNode.replaceChild(cleanInput, input);
+            
+            const cleanCb = cb.cloneNode(true);
+            cb.parentNode.replaceChild(cleanCb, cb);
+
+            if (activeView === "missing") {
+                cleanInput.value = missingList.join(", ");
+                cleanCb.checked = (missingList.length === 0);
+                if (cleanCb.checked) row.classList.add("completed");
                 else row.classList.remove("completed");
+                overallTotalCounter += missingList.length;
+            } else {
+                cleanInput.value = acquiredList.join(", ");
+                cleanCb.checked = (acquiredList.length === max);
+                if (cleanCb.checked) row.classList.add("completed");
+                else row.classList.remove("completed");
+                overallTotalCounter += acquiredList.length;
             }
+
+            cleanInput.addEventListener("blur", function() {
+                const values = cleanInput.value.split(",")
+                    .map(n => parseInt(n.trim(), 10))
+                    .filter(n => !isNaN(n) && n >= 1 && n <= max);
+
+                if (activeView === "missing") {
+                    saveMissingState(id, values);
+                } else {
+                    const structuralInverse = fullList.filter(n => !values.includes(n));
+                    saveMissingState(id, structuralInverse);
+                }
+                renderView();
+            });
+
+            cleanCb.addEventListener("change", function() {
+                if (activeView === "missing") {
+                    saveMissingState(id, cleanCb.checked ? [] : fullList);
+                } else {
+                    saveMissingState(id, cleanCb.checked ? [] : fullList);
+                }
+                renderView();
+            });
         });
+
+        totalCountInput.value = overallTotalCounter;
+    }
+
+    /* -----------------------------------------
+       BUILD INTERACTIVE CONTROL BUTTONS
+    ------------------------------------------*/
+    const footerElement = document.querySelector(".footer");
+
+    // 1. Purple Navigation/Toggle Tracker Button
+    const navBtn = document.createElement("button");
+    navBtn.style.padding = "10px 15px";
+    navBtn.style.fontSize = "14px";
+    navBtn.style.fontWeight = "bold";
+    navBtn.style.cursor = "pointer";
+    navBtn.style.color = "#fff";
+    navBtn.style.border = "none";
+    navBtn.style.borderRadius = "6px";
+    navBtn.style.background = "#7A4FBF"; // Assigned Purple hex
+    navBtn.addEventListener("click", () => {
+        activeView = (activeView === "missing") ? "acquired" : "missing";
+        localStorage.setItem("tracker_active_view", activeView);
+        renderView();
     });
+    footerElement.prepend(navBtn);
 
-    /* -----------------------------------------
-       AUTO COUNT TOTAL
-    ------------------------------------------*/
-    function updateTotalCount() {
-        let total = 0;
-
-        textInputs.forEach(input => {
-            if (input.value.trim() !== "") {
-                const nums = input.value.split(",")
-                    .map(n => n.trim())
-                    .filter(n => n !== "");
-                total += nums.length;
-            }
-        });
-
-        document.getElementById("total-count").value = total;
-        localStorage.setItem("total_missing", total);
-    }
-
-    const savedTotal = localStorage.getItem("total_missing");
-    if (savedTotal !== null) {
-        document.getElementById("total-count").value = savedTotal;
-    } else {
-        updateTotalCount();
-    }
-
-    /* -----------------------------------------
-       RESET ALL
-    ------------------------------------------*/
+    // 2. Clear / Reset All Button
     const resetBtn = document.createElement("button");
     resetBtn.textContent = "RESET ALL";
-    resetBtn.style.marginRight = "15px";
     resetBtn.style.padding = "10px 15px";
-    resetBtn.style.fontSize = "16px";
+    resetBtn.style.fontSize = "14px";
+    resetBtn.style.fontWeight = "bold";
     resetBtn.style.cursor = "pointer";
-    resetBtn.style.background = "#d9534f";
+    resetBtn.style.background = "#D64545"; // Assigned Red hex
     resetBtn.style.color = "#fff";
     resetBtn.style.border = "none";
     resetBtn.style.borderRadius = "6px";
-
     resetBtn.addEventListener("click", () => {
-        if (!confirm("Clear all data?")) return;
-
-        localStorage.clear();
-
-        textInputs.forEach(input => input.value = "");
-        checkboxes.forEach(cb => cb.checked = false);
-        document.querySelectorAll(".team-row").forEach(row => row.classList.remove("completed"));
-
-        updateTotalCount();
+        if (!confirm("Reset all list adjustments back to default factory baseline settings?")) return;
+        rows.forEach(row => {
+            localStorage.removeItem("missing_data_" + getIdentifier(row));
+        });
+        renderView();
     });
+    footerElement.insertBefore(resetBtn, navBtn.nextSibling);
 
-    document.querySelector(".footer").prepend(resetBtn);
+    // 3. Theme Dark Mode Button
+    const darkToggle = document.createElement("button");
+    darkToggle.textContent = "DARK MODE";
+    darkToggle.style.padding = "10px 15px";
+    darkToggle.style.fontSize = "14px";
+    darkToggle.style.fontWeight = "bold";
+    darkToggle.style.cursor = "pointer";
+    darkToggle.style.background = "#E88C3D"; // Assigned Orange hex
+    darkToggle.style.color = "#fff";
+    darkToggle.style.border = "none";
+    darkToggle.style.borderRadius = "6px";
+    if (localStorage.getItem("dark_mode") === "true") {
+        document.body.classList.add("dark");
+    }
+    darkToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("dark_mode", document.body.classList.contains("dark"));
+    });
+    footerElement.append(darkToggle);
 
-    /* -----------------------------------------
-       EXPORT CSV
-    ------------------------------------------*/
+    // 4. Excel/CSV Exporter Button
     const exportBtn = document.createElement("button");
     exportBtn.textContent = "EXPORT CSV";
     exportBtn.style.padding = "10px 15px";
-    exportBtn.style.fontSize = "16px";
+    exportBtn.style.fontSize = "14px";
+    exportBtn.style.fontWeight = "bold";
     exportBtn.style.cursor = "pointer";
-    exportBtn.style.background = "#0275d8";
+    exportBtn.style.background = "#4CA7A1"; // Assigned Blue/Green hex
     exportBtn.style.color = "#fff";
     exportBtn.style.border = "none";
     exportBtn.style.borderRadius = "6px";
-    exportBtn.style.marginLeft = "15px";
-
     exportBtn.addEventListener("click", () => {
-        let csv = "Country,Missing Stickers\n";
-
-        document.querySelectorAll(".team-row").forEach(row => {
-            const country = row.querySelector(".country").textContent.trim();
-            const missing = row.querySelector(".sticker-input").value.trim();
-            csv += `${country},"${missing}"\n`;
+        let csv = "Section,Type,Active Dataset\n";
+        rows.forEach(row => {
+            csv += `${getIdentifier(row)},${activeView},"${row.querySelector(".sticker-input").value}"\n`;
         });
-
         const blob = new Blob([csv], { type: "text/csv" });
         const url = URL.createObjectURL(blob);
-
         const a = document.createElement("a");
         a.href = url;
-        a.download = "JG_Sticker_Missing_List.csv";
+        a.download = `Panini_FWC_2026_${activeView}_report.csv`;
         a.click();
-
         URL.revokeObjectURL(url);
     });
-
-    document.querySelector(".footer").append(exportBtn);
+    footerElement.append(exportBtn);
 
     /* -----------------------------------------
-       COLLAPSIBLE GROUPS
+       COLLAPSIBLE GROUP HANDLERS
     ------------------------------------------*/
     document.querySelectorAll(".collapsible").forEach(title => {
         title.style.cursor = "pointer";
-
         title.addEventListener("click", () => {
-            const group = title.parentElement;
-            const rows = group.querySelectorAll(".team-row");
-
-            rows.forEach(row => {
+            const targetRows = title.parentElement.querySelectorAll(".team-row");
+            targetRows.forEach(row => {
                 row.style.display = (row.style.display === "none") ? "flex" : "none";
             });
         });
     });
 
-    /* -----------------------------------------
-       DARK MODE TOGGLE
-    ------------------------------------------*/
-    const darkToggle = document.getElementById("dark-toggle");
-
-    if (localStorage.getItem("dark_mode") === "true") {
-        document.body.classList.add("dark");
-    }
-
-    darkToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        localStorage.setItem("dark_mode", document.body.classList.contains("dark"));
-    });
-
+    renderView();
 });
 </script>
 
